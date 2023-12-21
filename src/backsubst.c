@@ -1,23 +1,25 @@
 #include "backsubst.h"
 
-/**
- * Zwraca 0 - wsteczne podstawienie zakonczone sukcesem
- * Zwraca 1 - błąd dzielenia przez 0 (element na diagonali = 0)
- * Zwraca 2 - błąd nieprawidłowych rozmiarów macierzy
- */
 int backsubst(Matrix* x, Matrix* mat, Matrix* b) {
-    /**
-     * Tutaj należy umieścić właściwą implemntację.
-     */
+    if (x->c != 1 || x->r != mat->r ||
+        b->c != x->c || b->r != x->r ||
+        mat->r != mat->c) {
+        return 2;
+    }
 
-    /* To ponizej jest przepisaniem b do x. Nalezy to poprawic! */
+    int root;
+    int row = mat->r;
 
-    int i;
-    for (i = 0; i < x->r; i++) {
-        x->data[i][0] = b->data[i][0];
+    while (row--) {
+        if (mat->data[row][row] == 0) 
+            return 1;
+        root = b->data[row][0];
+        for (int i = row + 1; i < mat->c; i++) {
+            root -= mat->data[row][i] * x->data[i][0];
+        }
+        root /= mat->data[row][row];
+        x->data[row][0] = root;
     }
 
     return 0;
 }
-
-
