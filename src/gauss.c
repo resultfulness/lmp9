@@ -1,3 +1,4 @@
+#include <math.h>
 #include "gauss.h"
 
 int switch_rows(Matrix* mat, Matrix* b, int row_a, int row_b) {
@@ -32,7 +33,7 @@ int eliminate(Matrix* mat, Matrix* b) {
             max_index = k;
             max_value = mat->data[k][k];
             for(i = k + 1; i < s; i++) {
-                tmp = mat->data[i][k];
+                tmp = fabs(mat->data[i][k]);
                 if(max_value > tmp)
                     continue;
                 max_index = i;
