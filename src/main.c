@@ -20,9 +20,37 @@ int main(int argc, char** argv) {
     printToScreen(b);
 
     res = eliminate(A,b);
+    if (res != 0) {
+        if (res == 1)
+            fprintf(stderr,
+                    "Błąd! Macierz A jest osobliwa, wystąpiło dzielenie "
+                    "przez zero\n");
+        if (res == 2)
+            fprintf(stderr,
+                    "Błąd! Podane macierze mają błędne rozmiary\n");
+
+        freeMatrix(A);
+        freeMatrix(b);
+        return EXIT_FAILURE;
+    }
+
     x = createMatrix(b->r, 1);
     if (x != NULL) {
         res = backsubst(x, A, b);
+        if (res != 0) {
+            if (res == 1)
+                fprintf(stderr,
+                        "Błąd! Na diagonali wystąpił element równy zero, "
+                        "powodujący dzielenie przez zero\n");
+            if (res == 2)
+                fprintf(stderr,
+                        "Błąd! Podane macierze mają błędne rozmiary\n");
+
+            freeMatrix(A);
+            freeMatrix(b);
+            freeMatrix(x);
+            return EXIT_FAILURE;
+        }
 
         printToScreen(x);
         freeMatrix(x);
