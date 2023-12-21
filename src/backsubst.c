@@ -7,7 +7,7 @@ int backsubst(Matrix* x, Matrix* mat, Matrix* b) {
         return 2;
     }
 
-    int root;
+    double root;
     int row = mat->r;
 
     while (row--) {
