@@ -7,7 +7,7 @@
  * Zwraca <> NULL - udalo sie wczytac
  * Zwraca == NULL - podczas wczytywania wystapil blad
  */
-Matrix * readFromFile(char* fname) {
+Matrix* readFromFile(char* fname) {
     int r, c;
     int ir, ic;
     FILE* fin =  fopen(fname, "r");

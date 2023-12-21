@@ -1,8 +1,9 @@
-#include "gauss.h"
-#include "backsubst.h"
-#include "mat_io.h"
-#include <stdlib.h>
 #include <stdio.h>
+#include <stdlib.h>
+
+#include "backsubst.h"
+#include "gauss.h"
+#include "mat_io.h"
 
 
 int main(int argc, char** argv) {
